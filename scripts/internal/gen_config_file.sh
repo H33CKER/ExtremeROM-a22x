@@ -58,6 +58,9 @@ fi
 SINGLE_SYSTEM_IMAGE="$TARGET_SINGLE_SYSTEM_IMAGE"
 [[ "$TARGET_SINGLE_SYSTEM_IMAGE" == "essi" ]] && SINGLE_SYSTEM_IMAGE="essi_64"
 
+SINGLE_SYSTEM_IMAGE="$TARGET_SINGLE_SYSTEM_IMAGE"
+[[ "$TARGET_SINGLE_SYSTEM_IMAGE" == "mssi" ]] && SINGLE_SYSTEM_IMAGE="mssi_64"
+
 if [ ! -f "$SRC_DIR/unica/configs/$SINGLE_SYSTEM_IMAGE.sh" ]; then
     LOGE "\"$SINGLE_SYSTEM_IMAGE\" is not a valid system image"
     exit 1
