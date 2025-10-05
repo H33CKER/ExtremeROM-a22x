@@ -1,4 +1,4 @@
-name: Build ExtremeROM
+name: Build ExtremeROM for a34x
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [beyond0lte, beyond1lte, beyond2lte, beyondx, x1s, y2s, z3s, c1s, c2s, r8s, o1s, t2s, p3s, r9s, r0s, b0s, g0s]
+        target: [a34x]
 
     steps:
       - name: Checkout repo
@@ -87,15 +87,16 @@ jobs:
 
       - name: Upload to GoFile
         run: |
-          ZIP_FILE=$(find out -maxdepth 1 -type f -name "*.zip" | head -n 1)
+          TAR_MD5_FILE=$(find out -maxdepth 1 -type f -name "*.tar.md5" | head -n 1)
 
-          RESPONSE=$(curl -s -F "file=@$ZIP_FILE" -F "token=${{ secrets.GOFILE_TOKEN }}" -F "folderId=${{ secrets.GOFILE_FOLDER_ID }}" "https://upload-eu-par.gofile.io/uploadFile")
+          RESPONSE=$(curl -s -F "file=@$TAR_MD5_FILE" -F "token=${{ secrets.GOFILE_TOKEN }}" -F "folderId=${{ secrets.GOFILE_FOLDER_ID }}" "https://upload-eu-par.gofile.io/uploadFile")
 
           echo "Uploaded successfully! Download link:"
           echo "$RESPONSE" | jq -r '.data.downloadPage'
 
           echo "MD5:"
-          md5sum "$ZIP_FILE"
+          md5sum "$TAR_MD5_FILE"
 
           echo "SHA256:"
-          sha256sum "$ZIP_FILE"
+          sha256sum "$TAR_MD5_FILE"
+          
