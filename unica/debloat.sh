@@ -31,7 +31,7 @@ etc/dpolicy
 # Samsung SIM Unlock
 SYSTEM_DEBLOAT+="
 system/bin/ssud
-system/etc/init/ssu_r13sxxx.rc
+system/etc/init/ssu_gts11uxx.rc
 system/etc/init/ssu.rc
 system/etc/permissions/privapp-permissions-com.samsung.ssu.xml
 system/etc/sysconfig/samsungsimunlock.xml
