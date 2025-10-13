@@ -55,14 +55,11 @@ else
     source "$SRC_DIR/target/$1/config.sh" || exit 1
 fi
 
-SINGLE_SYSTEM_IMAGE="$TARGET_SINGLE_SYSTEM_IMAGE"
-[[ "$TARGET_SINGLE_SYSTEM_IMAGE" == "essi" ]] && SINGLE_SYSTEM_IMAGE="essi_64"
-
-if [ ! -f "$SRC_DIR/unica/configs/$SINGLE_SYSTEM_IMAGE.sh" ]; then
-    LOGE "\"$SINGLE_SYSTEM_IMAGE\" is not a valid system image"
+if [ ! -f "$SRC_DIR/unica/configs/$TARGET_SINGLE_SYSTEM_IMAGE.sh" ]; then
+    LOGE "\"$TARGET_SINGLE_SYSTEM_IMAGE\" is not a valid system image"
     exit 1
 else
-    source "$SRC_DIR/unica/configs/$SINGLE_SYSTEM_IMAGE.sh" || exit 1
+    source "$SRC_DIR/unica/configs/$TARGET_SINGLE_SYSTEM_IMAGE.sh" || exit 1
 fi
 
 if [ -f "$OUT_DIR/config.sh" ]; then
@@ -172,7 +169,5 @@ fi
     GET_BUILD_VAR "SOURCE_SUPPORT_HOTSPOT_ENHANCED_OPEN" "false"
     GET_BUILD_VAR "TARGET_SUPPORT_HOTSPOT_ENHANCED_OPEN" "false"
 } > "$OUT_DIR/config.sh"
-
-unset SINGLE_SYSTEM_IMAGE
 
 exit 0

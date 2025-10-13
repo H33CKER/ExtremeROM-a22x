@@ -15,7 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# ExtremeROM configuration file for Exynos devices (essi/essi_64)
+# ExtremeROM configuration file for Exynos devices (essi)
 
 # Galaxy S25 FE (One UI 8)
 SOURCE_CODENAME="r13s"
