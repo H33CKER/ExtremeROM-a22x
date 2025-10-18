@@ -75,6 +75,9 @@ case "$1" in
     "prebuilts/samsung/b6qxxx")
         FIRMWARE="SM-F956B/EUX/351451341950251"
         ;;
+    "prebuilts/samsung/r11sxxx")
+        FIRMWARE="SM-S711B/EUX/355195305437187"
+        ;;
     "prebuilts/samsung/dm3qxxx")
         FIRMWARE="SM-S918B/EUX/350196551234562"
         ;;
