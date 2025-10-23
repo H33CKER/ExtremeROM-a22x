@@ -80,10 +80,23 @@ jobs:
           source ./buildenv.sh ${{ matrix.target }}
           ./scripts/extract_fw.sh --force --ignore-source
 
-      - name: Build ROM
+      - name: Fix permissions
+        run: |
+         sudo chown -R runner:runner out
+         sudo chmod -R u+rw out 
+       
+      - name: Build ROM 
         run: |
           source ./buildenv.sh ${{ matrix.target }}
-          ./scripts/make_rom.sh --force
+          if ./scripts/make_rom.sh --force; then
+            :
+          else
+            sudo chown -R runner:runner out
+            sudo chmod -R u+rw out
+            sudo cp -a -T "out/fw/SM-A346E_TUR/system_ext/etc/fs_config_dirs" "out/target/a34x/work_dir/system_ext/etc/fs_config_dirs"
+            source ./buildenv.sh ${{ matrix.target }} 
+            ./scripts/make_rom.sh --force
+          fi
 
       - name: Upload to GoFile
         run: |
@@ -99,4 +112,3 @@ jobs:
 
           echo "SHA256:"
           sha256sum "$TAR_MD5_FILE"
-          
